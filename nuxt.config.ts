@@ -16,17 +16,6 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/main.css"],
 
-  runtimeConfig: {
-    // Private keys are only available on the server side.
-    somePrivateData:
-      "You can override this value in your .env file with the NUXT_SOME_PRIVATE_DATA",
-    public: {
-      // Public keys are exposed to both the server and client side.
-      someData:
-        "You can override this value in your .env file with the NUXT_PUBLIC_SOME_DATA",
-    },
-  },
-
   // Authentication - https://docs.kinde.com/developer-tools/sdks/backend/nuxt-module/
   kinde: {
     debug: true,
@@ -58,6 +47,15 @@ export default defineNuxtConfig({
 
   compatibilityDate: "2026-03-15",
 
+  // SCRIPTS https://scripts.nuxt.com/scripts
+  scripts: {
+    registry: {
+      googleAnalytics: {
+        id: "G-XXXXXXXX",
+      },
+    },
+  },
+
   nitro: {
     experimental: {
       database: true,
@@ -69,7 +67,8 @@ export default defineNuxtConfig({
     database: {
       default: {
         connector: "sqlite",
-      }
+        options: {},
+      },
     },
   },
 
