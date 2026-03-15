@@ -1,4 +1,8 @@
 {
+  "app": {
+    "title": "Nuxt Dashboard Template",
+    "description": "A Nuxt UI based dashboard template with data visualization, admin workflows, and multi-page management screens."
+  },
   "common": {
     "all": "All",
     "home": "Home",

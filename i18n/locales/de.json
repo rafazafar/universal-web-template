@@ -1,4 +1,8 @@
 {
+  "app": {
+    "title": "Nuxt-Dashboard-Vorlage",
+    "description": "Eine auf Nuxt UI basierende Dashboard-Vorlage mit Datenvisualisierung, Admin-Abläufen und mehrseitigen Verwaltungsoberflächen."
+  },
   "common": {
     "all": "Alle",
     "home": "Startseite",

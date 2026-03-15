@@ -1,28 +1,16 @@
 <script setup lang="ts">
 const colorMode = useColorMode()
 const { uiLocale } = useNuxtUiLocale()
+const localeHead = useLocaleHead()
 
 const color = computed(() => colorMode.value === 'dark' ? '#1b1718' : 'white')
-const lang = computed(() => uiLocale.value.code)
-const dir = computed(() => uiLocale.value.dir)
 
-useHead({
-  meta: [
-    { charset: 'utf-8' },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { key: 'theme-color', name: 'theme-color', content: color }
-  ],
-  link: [
-    { rel: 'icon', href: '/favicon.ico' }
-  ],
-  htmlAttrs: {
-    lang,
-    dir
-  }
+definePageMeta({
+  title: 'app.title'
 })
 
-const title = 'Nuxt Dashboard Template'
-const description = 'A professional dashboard template built with Nuxt UI, featuring multiple pages, data visualization, and comprehensive management capabilities for creating powerful admin interfaces.'
+const title = $t('app.title') as string
+const description = $t('app.description') as string
 
 useSeoMeta({
   title,

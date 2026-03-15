@@ -1,64 +1,115 @@
-# Nuxt Dashboard Template
+# universal-web-template
 
-[![Nuxt UI](https://img.shields.io/badge/Made%20with-Nuxt%20UI-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com)
+Nuxt 4 + Nuxt UI ベースのダッシュボードテンプレートです。  
+日本語をデフォルト言語にした多言語対応と、Nuxt i18n の SEO 設定を含みます。
 
-Get started with the Nuxt dashboard template with multiple pages, collapsible sidebar, keyboard shortcuts, light & dark mode, command palette and more, powered by [Nuxt UI](https://ui.nuxt.com).
+[English README](./README-EN.md)
 
-- [Live demo](https://dashboard-template.nuxt.dev/)
-- [Documentation](https://ui.nuxt.com/docs/getting-started/installation/nuxt)
+## 概要
 
-<a href="https://dashboard-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://ui.nuxt.com/assets/templates/nuxt/dashboard-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://ui.nuxt.com/assets/templates/nuxt/dashboard-light.png">
-    <img alt="Nuxt Dashboard Template" src="https://ui.nuxt.com/assets/templates/nuxt/dashboard-light.png">
-  </picture>
-</a>
+- フレームワーク: Nuxt 4
+- UI: `@nuxt/ui`
+- i18n: `@nuxtjs/i18n`
+- ユーティリティ: `@vueuse/nuxt`
+- 可視化: `@unovis/vue`
+- バリデーション: `zod`
+- ダミー API: `server/api/*`
 
-> The dashboard template for Vue is on https://github.com/nuxt-ui-templates/dashboard-vue.
+## 主な機能
 
-## Quick Start
+- ダッシュボードホーム
+- 受信トレイ UI
+- 顧客一覧テーブル
+- 設定ページ
+- 日本語 / 英語 / フランス語 / ドイツ語
+- `prefix_except_default` 戦略のルーティング
+- `hreflang` / canonical / Open Graph locale を含む i18n SEO
 
-```bash [Terminal]
-npm create nuxt@latest -- -t ui/dashboard
-```
-
-## Deploy your own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=dashboard&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fdashboard&demo-image=https%3A%2F%2Fui.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fdashboard-dark.png&demo-url=https%3A%2F%2Fdashboard-template.nuxt.dev%2F&demo-title=Nuxt%20Dashboard%20Template&demo-description=A%20dashboard%20template%20with%20multi-column%20layout%20for%20building%20sophisticated%20admin%20interfaces.)
-
-## Setup
-
-Make sure to install the dependencies:
+## セットアップ
 
 ```bash
 pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
 pnpm dev
 ```
 
-## Production
+## 利用可能なスクリプト
 
-Build the application for production:
+| コマンド | 内容 |
+|---|---|
+| `pnpm dev` | 開発サーバー起動 |
+| `pnpm build` | 本番ビルド |
+| `pnpm preview` | ビルド結果のプレビュー |
+| `pnpm typecheck` | Nuxt 型チェック |
 
-```bash
-pnpm build
+補足:
+
+- `postinstall` で `nuxt prepare` が実行されます。
+- このリポジトリでは `pnpm` を前提にしています。
+
+## i18n
+
+現在の設定:
+
+- デフォルトロケール: `ja`
+- 対応ロケール: `ja`, `en`, `fr`, `de`
+- メッセージファイル: [`i18n/locales`](/Users/rafazafar/dev/universal-web-template/i18n/locales)
+- ルーティング戦略: `prefix_except_default`
+
+例:
+
+- 日本語: `/customers`
+- 英語: `/en/customers`
+
+## SEO
+
+Nuxt i18n の `useLocaleHead()` を利用して、ロケール別 SEO を有効化しています。
+
+- `html[lang]` / `dir`
+- `hreflang`
+- canonical
+- `og:locale`
+
+設定済みベース URL:
+
+- `https://cis-internal.org`
+
+変更する場合は [`nuxt.config.ts`](/Users/rafazafar/dev/universal-web-template/nuxt.config.ts) の `i18n.baseUrl` を更新してください。
+
+## ディレクトリ構成
+
+```text
+app/
+  app.vue
+  components/
+  composables/
+  layouts/
+  pages/
+  assets/
+server/
+  api/
+i18n/
+  locales/
+nuxt.config.ts
 ```
 
-Locally preview production build:
+## ページ構成
 
-```bash
-pnpm preview
-```
+- `/` ホーム
+- `/inbox` 受信トレイ
+- `/customers` 顧客管理
+- `/settings` 設定
+- `/settings/members`
+- `/settings/notifications`
+- `/settings/security`
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## カスタマイズのポイント
 
-## Renovate integration
+- 文言追加: `i18n/locales/*.json`
+- ロケール追加: `nuxt.config.ts` の `i18n.locales`
+- SEO ベース URL 変更: `nuxt.config.ts` の `i18n.baseUrl`
+- ダミーデータ変更: `server/api/*.ts`
 
-Install [Renovate GitHub app](https://github.com/apps/renovate/installations/select_target) on your repository and you are good to go.
+## 注意
+
+- このテンプレートにはサンプルデータとサンプル UI 文言が含まれます。
+- 実運用前にブランド名、SEO 文言、OG 画像、API 実装を差し替えてください。

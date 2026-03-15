@@ -1,4 +1,8 @@
 {
+  "app": {
+    "title": "Modèle de tableau de bord Nuxt",
+    "description": "Un modèle de tableau de bord basé sur Nuxt UI avec visualisation de données, flux d'administration et écrans de gestion multipages."
+  },
   "common": {
     "all": "Tous",
     "home": "Accueil",

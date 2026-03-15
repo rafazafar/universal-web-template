@@ -22,12 +22,13 @@ export default defineNuxtConfig({
 
   i18n: {
     defaultLocale: "ja",
+    baseUrl: "https://cis-internal.org",
     strategy: "prefix_except_default",
     locales: [
-      { code: "ja", name: "日本語", file: "ja.json" },
-      { code: "en", name: "English", file: "en.json" },
-      { code: "fr", name: "Français", file: "fr.json" },
-      { code: "de", name: "Deutsch", file: "de.json" },
+      { code: "ja", name: "日本語", language: "ja-JP", file: "ja.json" },
+      { code: "en", name: "English", language: "en-US", file: "en.json" },
+      { code: "fr", name: "Français", language: "fr-FR", file: "fr.json" },
+      { code: "de", name: "Deutsch", language: "de-DE", file: "de.json" },
     ],
   },
 
