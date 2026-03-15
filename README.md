@@ -19,6 +19,19 @@ pnpm dev
 
 開発サーバーが起動したら、ブラウザで表示された URL を開いてください。
 
+## AI を使って開発するとき
+
+- AI を使って開発する場合は、作業を始める前に必ず `pnpm install` を実行してください。
+- このリポジトリには agent skill のセットアップが含まれています。
+- Nuxt の開発を AI に依頼するときは、Nuxt skill を使うのがおすすめです。
+
+## 環境変数について
+
+- Nuxt は `.env` の値を自動で読み込みます。
+- `NUXT_XXX` はサーバー側の設定に使います。
+- `NUXT_PUBLIC_XXX` はクライアント側でも使う公開設定に使います。
+- サンプルは [`.env.example`](/Users/rafazafar/dev/universal-web-template/.env.example) を見てください。
+
 ## よく使うコマンド
 
 | コマンド | 使い道 |

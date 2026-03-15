@@ -6,7 +6,14 @@ const localePath = useLocalePath();
 const { t } = useI18n();
 const head = useLocaleHead();
 const toast = useToast();
-const title = computed(() => t(route.meta.title as string, t("app.title")));
+const title = computed(() => {
+  const pageTitleKey =
+    typeof route.meta.title === "string" && route.meta.title.length > 0
+      ? route.meta.title
+      : "app.title";
+
+  return t(pageTitleKey);
+});
 const open = ref(false);
 
 const links = computed<NavigationMenuItem[][]>(() => [
