@@ -36,6 +36,10 @@
     "code": "コード",
     "viewPageSource": "ページソースを表示"
   },
+  "navigation": {
+    "feedback": "フィードバック",
+    "helpSupport": "ヘルプとサポート"
+  },
   "cookie": {
     "title": "当サイトでは、体験向上のためにファーストパーティ Cookie を使用しています。",
     "accept": "同意する",

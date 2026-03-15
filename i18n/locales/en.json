@@ -36,6 +36,10 @@
     "code": "Code",
     "viewPageSource": "View page source"
   },
+  "navigation": {
+    "feedback": "Feedback",
+    "helpSupport": "Help & Support"
+  },
   "cookie": {
     "title": "We use first-party cookies to enhance your experience on our website.",
     "accept": "Accept",

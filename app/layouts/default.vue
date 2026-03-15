@@ -2,10 +2,11 @@
 import type { NavigationMenuItem } from "@nuxt/ui";
 
 const route = useRoute();
+const localePath = useLocalePath();
 const { t } = useI18n();
 const head = useLocaleHead();
 const toast = useToast();
-const title = computed(() => t(route.meta.title as string ?? "TBD", t("app.title")));
+const title = computed(() => t(route.meta.title as string, t("app.title")));
 const open = ref(false);
 
 const links = computed<NavigationMenuItem[][]>(() => [
@@ -13,7 +14,7 @@ const links = computed<NavigationMenuItem[][]>(() => [
     {
       label: t("common.home"),
       icon: "i-lucide-house",
-      to: "/",
+      to: localePath("/"),
       onSelect: () => {
         open.value = false;
       },
@@ -21,7 +22,7 @@ const links = computed<NavigationMenuItem[][]>(() => [
     {
       label: t("common.inbox"),
       icon: "i-lucide-inbox",
-      to: "/inbox",
+      to: localePath("/inbox"),
       badge: "4",
       onSelect: () => {
         open.value = false;
@@ -30,21 +31,21 @@ const links = computed<NavigationMenuItem[][]>(() => [
     {
       label: t("common.customers"),
       icon: "i-lucide-users",
-      to: "/customers",
+      to: localePath("/customers"),
       onSelect: () => {
         open.value = false;
       },
     },
     {
       label: t("common.settings"),
-      to: "/settings",
+      to: localePath("/settings"),
       icon: "i-lucide-settings",
       defaultOpen: true,
       type: "trigger",
       children: [
         {
           label: t("common.general"),
-          to: "/settings",
+          to: localePath("/settings"),
           exact: true,
           onSelect: () => {
             open.value = false;
@@ -52,21 +53,21 @@ const links = computed<NavigationMenuItem[][]>(() => [
         },
         {
           label: t("common.members"),
-          to: "/settings/members",
+          to: localePath("/settings/members"),
           onSelect: () => {
             open.value = false;
           },
         },
         {
           label: t("common.notifications"),
-          to: "/settings/notifications",
+          to: localePath("/settings/notifications"),
           onSelect: () => {
             open.value = false;
           },
         },
         {
           label: t("common.security"),
-          to: "/settings/security",
+          to: localePath("/settings/security"),
           onSelect: () => {
             open.value = false;
           },
@@ -76,13 +77,13 @@ const links = computed<NavigationMenuItem[][]>(() => [
   ],
   [
     {
-      label: "Feedback",
+      label: t("navigation.feedback"),
       icon: "i-lucide-message-circle",
       to: "https://github.com/nuxt-ui-templates/dashboard",
       target: "_blank",
     },
     {
-      label: "Help & Support",
+      label: t("navigation.helpSupport"),
       icon: "i-lucide-info",
       to: "https://github.com/nuxt-ui-templates/dashboard",
       target: "_blank",
@@ -104,7 +105,7 @@ const groups = computed(() => [
         id: "source",
         label: t("search.viewPageSource"),
         icon: "i-simple-icons-github",
-        to: `https://github.com/nuxt-ui-templates/dashboard/blob/main/app/pages${route.path === "/" ? "/index" : route.path}.vue`,
+        to: "https://github.com/nuxt-ui-templates/dashboard/tree/main/app/pages",
         target: "_blank",
       },
     ],
