@@ -1,0 +1,192 @@
+{
+  "common": {
+    "all": "Tous",
+    "home": "Accueil",
+    "inbox": "Boîte de réception",
+    "customers": "Clients",
+    "settings": "Paramètres",
+    "general": "Général",
+    "members": "Membres",
+    "notifications": "Notifications",
+    "security": "Sécurité",
+    "success": "Succès",
+    "saveChanges": "Enregistrer les modifications",
+    "choose": "Choisir",
+    "update": "Mettre à jour",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "create": "Créer",
+    "send": "Envoyer",
+    "name": "Nom",
+    "email": "E-mail",
+    "location": "Lieu",
+    "status": "Statut",
+    "date": "Date",
+    "amount": "Montant",
+    "copiedToClipboard": "Copié dans le presse-papiers",
+    "selectAll": "Tout sélectionner",
+    "selectRow": "Sélectionner la ligne"
+  },
+  "search": {
+    "goTo": "Aller à",
+    "code": "Code",
+    "viewPageSource": "Voir le code de la page"
+  },
+  "cookie": {
+    "title": "Nous utilisons des cookies internes pour améliorer votre expérience sur notre site.",
+    "accept": "Accepter",
+    "optOut": "Refuser"
+  },
+  "actions": {
+    "newMail": "Nouveau message",
+    "newCustomer": "Nouveau client"
+  },
+  "userMenu": {
+    "profile": "Profil",
+    "billing": "Facturation",
+    "theme": "Thème",
+    "primary": "Primaire",
+    "neutral": "Neutre",
+    "appearance": "Apparence",
+    "light": "Clair",
+    "dark": "Sombre",
+    "language": "Langue",
+    "templates": "Modèles",
+    "documentation": "Documentation",
+    "githubRepository": "Dépôt GitHub",
+    "logout": "Se déconnecter"
+  },
+  "validation": {
+    "tooShort": "Trop court",
+    "invalidEmail": "E-mail invalide"
+  },
+  "settings": {
+    "profile": {
+      "title": "Profil",
+      "description": "Ces informations seront affichées publiquement.",
+      "updated": "Vos paramètres ont été mis à jour.",
+      "nameDescription": "Sera affiché sur les reçus, factures et autres communications.",
+      "emailDescription": "Utilisé pour se connecter, pour les reçus par e-mail et les mises à jour produit.",
+      "username": "Nom d'utilisateur",
+      "usernameDescription": "Votre identifiant unique pour la connexion et l'URL de votre profil.",
+      "avatar": "Avatar",
+      "avatarDescription": "JPG, GIF ou PNG. 1 Mo max.",
+      "bio": "Bio",
+      "bioDescription": "Brève description de votre profil. Les URL sont converties en liens."
+    },
+    "members": {
+      "description": "Invitez de nouveaux membres par adresse e-mail.",
+      "invitePeople": "Inviter des personnes",
+      "searchPlaceholder": "Rechercher des membres",
+      "editMember": "Modifier le membre",
+      "removeMember": "Supprimer le membre",
+      "roles": {
+        "member": "Membre",
+        "owner": "Propriétaire"
+      }
+    },
+    "notifications": {
+      "channelsTitle": "Canaux de notification",
+      "channelsDescription": "Où pouvons-nous vous notifier ?",
+      "emailDescription": "Recevoir un récapitulatif quotidien par e-mail.",
+      "desktop": "Bureau",
+      "desktopDescription": "Recevoir des notifications sur le bureau.",
+      "accountUpdatesTitle": "Mises à jour du compte",
+      "accountUpdatesDescription": "Recevoir des mises à jour sur Nuxt UI.",
+      "weeklyDigest": "Résumé hebdomadaire",
+      "weeklyDigestDescription": "Recevoir un résumé hebdomadaire des actualités.",
+      "productUpdates": "Mises à jour produit",
+      "productUpdatesDescription": "Recevoir un e-mail mensuel avec toutes les nouvelles fonctionnalités et mises à jour.",
+      "importantUpdates": "Mises à jour importantes",
+      "importantUpdatesDescription": "Recevoir des e-mails sur les mises à jour importantes comme les correctifs de sécurité et la maintenance."
+    },
+    "security": {
+      "minPassword": "Doit contenir au moins 8 caractères",
+      "passwordsMustDiffer": "Les mots de passe doivent être différents",
+      "passwordTitle": "Mot de passe",
+      "passwordDescription": "Confirmez votre mot de passe actuel avant d'en définir un nouveau.",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "accountTitle": "Compte",
+      "accountDescription": "Vous ne souhaitez plus utiliser notre service ? Vous pouvez supprimer votre compte ici. Cette action est irréversible. Toutes les informations liées à ce compte seront supprimées définitivement.",
+      "deleteAccount": "Supprimer le compte"
+    }
+  },
+  "inbox": {
+    "unread": "Non lus",
+    "markAsUnread": "Marquer comme non lu",
+    "markAsImportant": "Marquer comme important",
+    "starThread": "Mettre en favori",
+    "muteThread": "Mettre en sourdine",
+    "emailSent": "E-mail envoyé",
+    "emailSentDescription": "Votre e-mail a été envoyé avec succès",
+    "archive": "Archiver",
+    "reply": "Répondre",
+    "replyTo": "Répondre à {name} ({email})",
+    "writeReply": "Écrivez votre réponse...",
+    "attachFile": "Joindre un fichier",
+    "saveDraft": "Enregistrer le brouillon"
+  },
+  "home": {
+    "revenue": "Revenus",
+    "stats": {
+      "customers": "Clients",
+      "conversions": "Conversions",
+      "revenue": "Revenus",
+      "orders": "Commandes"
+    },
+    "dateRange": {
+      "pickDate": "Choisir une date",
+      "last7Days": "7 derniers jours",
+      "last14Days": "14 derniers jours",
+      "last30Days": "30 derniers jours",
+      "last3Months": "3 derniers mois",
+      "last6Months": "6 derniers mois",
+      "lastYear": "Dernière année"
+    },
+    "periods": {
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel"
+    },
+    "sales": {
+      "status": {
+        "paid": "Payé",
+        "failed": "Échoué",
+        "refunded": "Remboursé"
+      }
+    }
+  },
+  "customers": {
+    "actions": "Actions",
+    "copyCustomerId": "Copier l'ID client",
+    "customerIdCopied": "ID client copié dans le presse-papiers",
+    "viewCustomerDetails": "Voir les détails du client",
+    "viewCustomerPayments": "Voir les paiements du client",
+    "deleteCustomer": "Supprimer le client",
+    "customerDeleted": "Client supprimé",
+    "customerDeletedDescription": "Le client a été supprimé.",
+    "filterEmails": "Filtrer les e-mails...",
+    "filterStatus": "Filtrer le statut",
+    "display": "Afficher",
+    "rowsSelected": "{selected} sur {total} ligne(s) sélectionnée(s).",
+    "newCustomer": "Nouveau client",
+    "addCustomerDescription": "Ajouter un nouveau client à la base de données",
+    "newCustomerAdded": "Nouveau client {name} ajouté",
+    "deleteCustomersTitle": "Supprimer {count} client(s)",
+    "deleteCustomersDescription": "Êtes-vous sûr ? Cette action est irréversible.",
+    "status": {
+      "subscribed": "Abonné",
+      "unsubscribed": "Désabonné",
+      "bounced": "Rebondi"
+    },
+    "columns": {
+      "id": "ID",
+      "name": "Nom",
+      "email": "E-mail",
+      "location": "Lieu",
+      "status": "Statut",
+      "actions": "Actions"
+    }
+  }
+}

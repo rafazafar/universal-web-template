@@ -7,6 +7,7 @@ defineProps<{
 
 const colorMode = useColorMode()
 const appConfig = useAppConfig()
+const { locale, locales, setLocale, t } = useI18n()
 
 const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']
 const neutrals = ['slate', 'gray', 'zinc', 'neutral', 'stone']
@@ -19,25 +20,40 @@ const user = ref({
   }
 })
 
+const localeOptions = computed(() => locales.value.map((localeOption) => {
+  const code = typeof localeOption === 'string' ? localeOption : localeOption.code
+  const label = typeof localeOption === 'string' ? localeOption : (localeOption.name ?? localeOption.code)
+
+  return {
+    label,
+    type: 'checkbox' as const,
+    checked: locale.value === code,
+    onSelect: async (event: Event) => {
+      event.preventDefault()
+      await setLocale(code)
+    }
+  }
+}))
+
 const items = computed<DropdownMenuItem[][]>(() => ([[{
   type: 'label',
   label: user.value.name,
   avatar: user.value.avatar
 }], [{
-  label: 'Profile',
+  label: t('userMenu.profile'),
   icon: 'i-lucide-user'
 }, {
-  label: 'Billing',
+  label: t('userMenu.billing'),
   icon: 'i-lucide-credit-card'
 }, {
-  label: 'Settings',
+  label: t('common.settings'),
   icon: 'i-lucide-settings',
   to: '/settings'
 }], [{
-  label: 'Theme',
+  label: t('userMenu.theme'),
   icon: 'i-lucide-palette',
   children: [{
-    label: 'Primary',
+    label: t('userMenu.primary'),
     slot: 'chip',
     chip: appConfig.ui.colors.primary,
     content: {
@@ -57,7 +73,7 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
       }
     }))
   }, {
-    label: 'Neutral',
+    label: t('userMenu.neutral'),
     slot: 'chip',
     chip: appConfig.ui.colors.neutral === 'neutral' ? 'old-neutral' : appConfig.ui.colors.neutral,
     content: {
@@ -78,10 +94,10 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
     }))
   }]
 }, {
-  label: 'Appearance',
+  label: t('userMenu.appearance'),
   icon: 'i-lucide-sun-moon',
   children: [{
-    label: 'Light',
+    label: t('userMenu.light'),
     icon: 'i-lucide-sun',
     type: 'checkbox',
     checked: colorMode.value === 'light',
@@ -91,7 +107,7 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
       colorMode.preference = 'light'
     }
   }, {
-    label: 'Dark',
+    label: t('userMenu.dark'),
     icon: 'i-lucide-moon',
     type: 'checkbox',
     checked: colorMode.value === 'dark',
@@ -104,8 +120,12 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
       e.preventDefault()
     }
   }]
+}, {
+  label: t('userMenu.language'),
+  icon: 'i-lucide-languages',
+  children: localeOptions.value
 }], [{
-  label: 'Templates',
+  label: t('userMenu.templates'),
   icon: 'i-lucide-layout-template',
   children: [{
     label: 'Starter',
@@ -136,17 +156,17 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
     to: 'https://changelog-template.nuxt.dev/'
   }]
 }], [{
-  label: 'Documentation',
+  label: t('userMenu.documentation'),
   icon: 'i-lucide-book-open',
   to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt',
   target: '_blank'
 }, {
-  label: 'GitHub repository',
+  label: t('userMenu.githubRepository'),
   icon: 'i-simple-icons-github',
   to: 'https://github.com/nuxt-ui-templates/dashboard',
   target: '_blank'
 }, {
-  label: 'Log out',
+  label: t('userMenu.logout'),
   icon: 'i-lucide-log-out'
 }]]))
 </script>

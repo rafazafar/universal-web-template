@@ -7,6 +7,7 @@ const model = defineModel<Period>({ required: true })
 const props = defineProps<{
   range: Range
 }>()
+const { t } = useI18n()
 
 const days = computed(() => eachDayOfInterval(props.range))
 
@@ -30,6 +31,11 @@ const periods = computed<Period[]>(() => {
   ]
 })
 
+const items = computed(() => periods.value.map(period => ({
+  label: t(`home.periods.${period}`),
+  value: period
+})))
+
 // Ensure the model value is always a valid period
 watch(periods, () => {
   if (!periods.value.includes(model.value)) {
@@ -41,7 +47,7 @@ watch(periods, () => {
 <template>
   <USelect
     v-model="model"
-    :items="periods"
+    :items="items"
     variant="ghost"
     class="data-[state=open]:bg-elevated"
     :ui="{ value: 'capitalize', itemLabel: 'capitalize', trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200' }"

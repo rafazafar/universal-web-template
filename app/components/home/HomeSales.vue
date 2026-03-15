@@ -7,6 +7,7 @@ const props = defineProps<{
   period: Period
   range: Range
 }>()
+const { t, locale } = useI18n()
 
 const UBadge = resolveComponent('UBadge')
 
@@ -49,9 +50,9 @@ const columns: TableColumn<Sale>[] = [
   },
   {
     accessorKey: 'date',
-    header: 'Date',
+    header: t('common.date'),
     cell: ({ row }) => {
-      return new Date(row.getValue('date')).toLocaleString('en-US', {
+      return new Date(row.getValue('date')).toLocaleString(locale.value === 'ja' ? 'ja-JP' : 'en-US', {
         day: 'numeric',
         month: 'short',
         hour: '2-digit',
@@ -62,7 +63,7 @@ const columns: TableColumn<Sale>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'Status',
+    header: t('common.status'),
     cell: ({ row }) => {
       const color = {
         paid: 'success' as const,
@@ -71,21 +72,21 @@ const columns: TableColumn<Sale>[] = [
       }[row.getValue('status') as string]
 
       return h(UBadge, { class: 'capitalize', variant: 'subtle', color }, () =>
-        row.getValue('status')
+        t(`home.sales.status.${row.getValue('status') as string}`)
       )
     }
   },
   {
     accessorKey: 'email',
-    header: 'Email'
+    header: t('common.email')
   },
   {
     accessorKey: 'amount',
-    header: () => h('div', { class: 'text-right' }, 'Amount'),
+    header: () => h('div', { class: 'text-right' }, t('common.amount')),
     cell: ({ row }) => {
       const amount = Number.parseFloat(row.getValue('amount'))
 
-      const formatted = new Intl.NumberFormat('en-US', {
+      const formatted = new Intl.NumberFormat(locale.value === 'ja' ? 'ja-JP' : 'en-US', {
         style: 'currency',
         currency: 'EUR'
       }).format(amount)

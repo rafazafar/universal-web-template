@@ -6,11 +6,13 @@ defineProps<{
   members: Member[]
 }>()
 
+const { t } = useI18n()
+
 const items = [{
-  label: 'Edit member',
+  label: t('settings.members.editMember'),
   onSelect: () => console.log('Edit member')
 }, {
-  label: 'Remove member',
+  label: t('settings.members.removeMember'),
   color: 'error' as const,
   onSelect: () => console.log('Remove member')
 }] satisfies DropdownMenuItem[]
@@ -42,7 +44,10 @@ const items = [{
       <div class="flex items-center gap-3">
         <USelect
           :model-value="member.role"
-          :items="['member', 'owner']"
+          :items="[
+            { label: t('settings.members.roles.member'), value: 'member' },
+            { label: t('settings.members.roles.owner'), value: 'owner' }
+          ]"
           color="neutral"
           :ui="{ value: 'capitalize', item: 'capitalize' }"
         />

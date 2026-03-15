@@ -1,0 +1,192 @@
+{
+  "common": {
+    "all": "Alle",
+    "home": "Startseite",
+    "inbox": "Posteingang",
+    "customers": "Kunden",
+    "settings": "Einstellungen",
+    "general": "Allgemein",
+    "members": "Mitglieder",
+    "notifications": "Benachrichtigungen",
+    "security": "Sicherheit",
+    "success": "Erfolg",
+    "saveChanges": "Änderungen speichern",
+    "choose": "Auswählen",
+    "update": "Aktualisieren",
+    "delete": "Löschen",
+    "cancel": "Abbrechen",
+    "create": "Erstellen",
+    "send": "Senden",
+    "name": "Name",
+    "email": "E-Mail",
+    "location": "Standort",
+    "status": "Status",
+    "date": "Datum",
+    "amount": "Betrag",
+    "copiedToClipboard": "In die Zwischenablage kopiert",
+    "selectAll": "Alle auswählen",
+    "selectRow": "Zeile auswählen"
+  },
+  "search": {
+    "goTo": "Gehe zu",
+    "code": "Code",
+    "viewPageSource": "Seitenquelltext anzeigen"
+  },
+  "cookie": {
+    "title": "Wir verwenden eigene Cookies, um Ihre Erfahrung auf unserer Website zu verbessern.",
+    "accept": "Akzeptieren",
+    "optOut": "Ablehnen"
+  },
+  "actions": {
+    "newMail": "Neue Nachricht",
+    "newCustomer": "Neuer Kunde"
+  },
+  "userMenu": {
+    "profile": "Profil",
+    "billing": "Abrechnung",
+    "theme": "Thema",
+    "primary": "Primär",
+    "neutral": "Neutral",
+    "appearance": "Darstellung",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "language": "Sprache",
+    "templates": "Vorlagen",
+    "documentation": "Dokumentation",
+    "githubRepository": "GitHub-Repository",
+    "logout": "Abmelden"
+  },
+  "validation": {
+    "tooShort": "Zu kurz",
+    "invalidEmail": "Ungültige E-Mail"
+  },
+  "settings": {
+    "profile": {
+      "title": "Profil",
+      "description": "Diese Informationen werden öffentlich angezeigt.",
+      "updated": "Ihre Einstellungen wurden aktualisiert.",
+      "nameDescription": "Wird auf Belegen, Rechnungen und anderen Mitteilungen angezeigt.",
+      "emailDescription": "Wird für die Anmeldung, E-Mail-Belege und Produktupdates verwendet.",
+      "username": "Benutzername",
+      "usernameDescription": "Ihr eindeutiger Benutzername für die Anmeldung und Ihre Profil-URL.",
+      "avatar": "Avatar",
+      "avatarDescription": "JPG, GIF oder PNG. Max. 1 MB.",
+      "bio": "Bio",
+      "bioDescription": "Kurze Beschreibung für Ihr Profil. URLs werden verlinkt."
+    },
+    "members": {
+      "description": "Laden Sie neue Mitglieder per E-Mail-Adresse ein.",
+      "invitePeople": "Personen einladen",
+      "searchPlaceholder": "Mitglieder suchen",
+      "editMember": "Mitglied bearbeiten",
+      "removeMember": "Mitglied entfernen",
+      "roles": {
+        "member": "Mitglied",
+        "owner": "Inhaber"
+      }
+    },
+    "notifications": {
+      "channelsTitle": "Benachrichtigungskanäle",
+      "channelsDescription": "Wo können wir Sie benachrichtigen?",
+      "emailDescription": "Tägliche E-Mail-Zusammenfassung erhalten.",
+      "desktop": "Desktop",
+      "desktopDescription": "Desktop-Benachrichtigungen erhalten.",
+      "accountUpdatesTitle": "Kontoupdates",
+      "accountUpdatesDescription": "Updates zu Nuxt UI erhalten.",
+      "weeklyDigest": "Wöchentliche Zusammenfassung",
+      "weeklyDigestDescription": "Eine wöchentliche Zusammenfassung der Neuigkeiten erhalten.",
+      "productUpdates": "Produktupdates",
+      "productUpdatesDescription": "Eine monatliche E-Mail mit allen neuen Funktionen und Updates erhalten.",
+      "importantUpdates": "Wichtige Updates",
+      "importantUpdatesDescription": "E-Mails zu wichtigen Updates wie Sicherheitsfixes und Wartung erhalten."
+    },
+    "security": {
+      "minPassword": "Muss mindestens 8 Zeichen enthalten",
+      "passwordsMustDiffer": "Passwörter müssen unterschiedlich sein",
+      "passwordTitle": "Passwort",
+      "passwordDescription": "Bestätigen Sie Ihr aktuelles Passwort, bevor Sie ein neues festlegen.",
+      "currentPassword": "Aktuelles Passwort",
+      "newPassword": "Neues Passwort",
+      "accountTitle": "Konto",
+      "accountDescription": "Sie möchten unseren Service nicht mehr nutzen? Hier können Sie Ihr Konto löschen. Diese Aktion ist nicht rückgängig zu machen. Alle mit diesem Konto verbundenen Informationen werden dauerhaft gelöscht.",
+      "deleteAccount": "Konto löschen"
+    }
+  },
+  "inbox": {
+    "unread": "Ungelesen",
+    "markAsUnread": "Als ungelesen markieren",
+    "markAsImportant": "Als wichtig markieren",
+    "starThread": "Thread markieren",
+    "muteThread": "Thread stummschalten",
+    "emailSent": "E-Mail gesendet",
+    "emailSentDescription": "Ihre E-Mail wurde erfolgreich gesendet",
+    "archive": "Archivieren",
+    "reply": "Antworten",
+    "replyTo": "Antwort an {name} ({email})",
+    "writeReply": "Antwort schreiben...",
+    "attachFile": "Datei anhängen",
+    "saveDraft": "Entwurf speichern"
+  },
+  "home": {
+    "revenue": "Umsatz",
+    "stats": {
+      "customers": "Kunden",
+      "conversions": "Konversionen",
+      "revenue": "Umsatz",
+      "orders": "Bestellungen"
+    },
+    "dateRange": {
+      "pickDate": "Datum auswählen",
+      "last7Days": "Letzte 7 Tage",
+      "last14Days": "Letzte 14 Tage",
+      "last30Days": "Letzte 30 Tage",
+      "last3Months": "Letzte 3 Monate",
+      "last6Months": "Letzte 6 Monate",
+      "lastYear": "Letztes Jahr"
+    },
+    "periods": {
+      "daily": "Täglich",
+      "weekly": "Wöchentlich",
+      "monthly": "Monatlich"
+    },
+    "sales": {
+      "status": {
+        "paid": "Bezahlt",
+        "failed": "Fehlgeschlagen",
+        "refunded": "Erstattet"
+      }
+    }
+  },
+  "customers": {
+    "actions": "Aktionen",
+    "copyCustomerId": "Kunden-ID kopieren",
+    "customerIdCopied": "Kunden-ID in die Zwischenablage kopiert",
+    "viewCustomerDetails": "Kundendetails anzeigen",
+    "viewCustomerPayments": "Kundenzahlungen anzeigen",
+    "deleteCustomer": "Kunden löschen",
+    "customerDeleted": "Kunde gelöscht",
+    "customerDeletedDescription": "Der Kunde wurde gelöscht.",
+    "filterEmails": "E-Mails filtern...",
+    "filterStatus": "Status filtern",
+    "display": "Anzeigen",
+    "rowsSelected": "{selected} von {total} Zeile(n) ausgewählt.",
+    "newCustomer": "Neuer Kunde",
+    "addCustomerDescription": "Einen neuen Kunden zur Datenbank hinzufügen",
+    "newCustomerAdded": "Neuer Kunde {name} hinzugefügt",
+    "deleteCustomersTitle": "{count} Kunde(n) löschen",
+    "deleteCustomersDescription": "Sind Sie sicher? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "status": {
+      "subscribed": "Abonniert",
+      "unsubscribed": "Abbestellt",
+      "bounced": "Unzustellbar"
+    },
+    "columns": {
+      "id": "ID",
+      "name": "Name",
+      "email": "E-Mail",
+      "location": "Standort",
+      "status": "Status",
+      "actions": "Aktionen"
+    }
+  }
+}

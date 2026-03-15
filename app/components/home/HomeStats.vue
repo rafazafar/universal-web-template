@@ -5,9 +5,10 @@ const props = defineProps<{
   period: Period
   range: Range
 }>()
+const { t, locale } = useI18n()
 
 function formatCurrency(value: number): string {
-  return value.toLocaleString('en-US', {
+  return value.toLocaleString(locale.value === 'ja' ? 'ja-JP' : 'en-US', {
     style: 'currency',
     currency: 'USD',
     maximumFractionDigits: 0
@@ -15,21 +16,21 @@ function formatCurrency(value: number): string {
 }
 
 const baseStats = [{
-  title: 'Customers',
+  title: 'customers',
   icon: 'i-lucide-users',
   minValue: 400,
   maxValue: 1000,
   minVariation: -15,
   maxVariation: 25
 }, {
-  title: 'Conversions',
+  title: 'conversions',
   icon: 'i-lucide-chart-pie',
   minValue: 1000,
   maxValue: 2000,
   minVariation: -10,
   maxVariation: 20
 }, {
-  title: 'Revenue',
+  title: 'revenue',
   icon: 'i-lucide-circle-dollar-sign',
   minValue: 200000,
   maxValue: 500000,
@@ -37,7 +38,7 @@ const baseStats = [{
   maxVariation: 30,
   formatter: formatCurrency
 }, {
-  title: 'Orders',
+  title: 'orders',
   icon: 'i-lucide-shopping-cart',
   minValue: 100,
   maxValue: 300,
@@ -51,7 +52,7 @@ const { data: stats } = await useAsyncData<Stat[]>('stats', async () => {
     const variation = randomInt(stat.minVariation, stat.maxVariation)
 
     return {
-      title: stat.title,
+      title: t(`home.stats.${stat.title}`),
       icon: stat.icon,
       value: stat.formatter ? stat.formatter(value) : value,
       variation

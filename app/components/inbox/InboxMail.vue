@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { format } from 'date-fns'
 import type { Mail } from '~/types'
 
 defineProps<{
@@ -7,25 +6,33 @@ defineProps<{
 }>()
 
 const emits = defineEmits(['close'])
+const { t, locale } = useI18n()
 
-const dropdownItems = [[{
-  label: 'Mark as unread',
+const dropdownItems = computed(() => [[{
+  label: t('inbox.markAsUnread'),
   icon: 'i-lucide-check-circle'
 }, {
-  label: 'Mark as important',
+  label: t('inbox.markAsImportant'),
   icon: 'i-lucide-triangle-alert'
 }], [{
-  label: 'Star thread',
+  label: t('inbox.starThread'),
   icon: 'i-lucide-star'
 }, {
-  label: 'Mute thread',
+  label: t('inbox.muteThread'),
   icon: 'i-lucide-circle-pause'
-}]]
+}]])
 
 const toast = useToast()
 
 const reply = ref('')
 const loading = ref(false)
+const dateFormatter = computed(() => new Intl.DateTimeFormat(locale.value === 'ja' ? 'ja-JP' : 'en-US', {
+  day: '2-digit',
+  month: 'short',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false
+}))
 
 function onSubmit() {
   loading.value = true
@@ -34,8 +41,8 @@ function onSubmit() {
     reply.value = ''
 
     toast.add({
-      title: 'Email sent',
-      description: 'Your email has been sent successfully',
+      title: t('inbox.emailSent'),
+      description: t('inbox.emailSentDescription'),
       icon: 'i-lucide-check-circle',
       color: 'success'
     })
@@ -59,7 +66,7 @@ function onSubmit() {
       </template>
 
       <template #right>
-        <UTooltip text="Archive">
+        <UTooltip :text="t('inbox.archive')">
           <UButton
             icon="i-lucide-inbox"
             color="neutral"
@@ -67,7 +74,7 @@ function onSubmit() {
           />
         </UTooltip>
 
-        <UTooltip text="Reply">
+        <UTooltip :text="t('inbox.reply')">
           <UButton icon="i-lucide-reply" color="neutral" variant="ghost" />
         </UTooltip>
 
@@ -100,7 +107,7 @@ function onSubmit() {
       </div>
 
       <p class="max-sm:pl-16 text-muted text-sm sm:mt-2">
-        {{ format(new Date(mail.date), 'dd MMM HH:mm') }}
+        {{ dateFormatter.format(new Date(mail.date)) }}
       </p>
     </div>
 
@@ -116,7 +123,7 @@ function onSubmit() {
           <UIcon name="i-lucide-reply" class="size-5" />
 
           <span class="text-sm truncate">
-            Reply to {{ mail.from.name }} ({{ mail.from.email }})
+            {{ t('inbox.replyTo', { name: mail.from.name, email: mail.from.email }) }}
           </span>
         </template>
 
@@ -127,7 +134,7 @@ function onSubmit() {
             variant="none"
             required
             autoresize
-            placeholder="Write your reply..."
+            :placeholder="t('inbox.writeReply')"
             :rows="4"
             :disabled="loading"
             class="w-full"
@@ -135,7 +142,7 @@ function onSubmit() {
           />
 
           <div class="flex items-center justify-between">
-            <UTooltip text="Attach file">
+            <UTooltip :text="t('inbox.attachFile')">
               <UButton
                 color="neutral"
                 variant="ghost"
@@ -147,13 +154,13 @@ function onSubmit() {
               <UButton
                 color="neutral"
                 variant="ghost"
-                label="Save draft"
+                :label="t('inbox.saveDraft')"
               />
               <UButton
                 type="submit"
                 color="neutral"
                 :loading="loading"
-                label="Send"
+                :label="t('common.send')"
                 icon="i-lucide-send"
               />
             </div>

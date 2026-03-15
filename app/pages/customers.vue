@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { TableColumn } from '@nuxt/ui'
-import { upperFirst } from 'scule'
 import { getPaginationRowModel } from '@tanstack/table-core'
 import type { Row } from '@tanstack/table-core'
 import type { User } from '~/types'
@@ -11,6 +10,7 @@ const UBadge = resolveComponent('UBadge')
 const UDropdownMenu = resolveComponent('UDropdownMenu')
 const UCheckbox = resolveComponent('UCheckbox')
 
+const { t } = useI18n()
 const toast = useToast()
 const table = useTemplateRef('table')
 
@@ -29,16 +29,16 @@ function getRowItems(row: Row<User>) {
   return [
     {
       type: 'label',
-      label: 'Actions'
+      label: t('customers.actions')
     },
     {
-      label: 'Copy customer ID',
+      label: t('customers.copyCustomerId'),
       icon: 'i-lucide-copy',
       onSelect() {
         navigator.clipboard.writeText(row.original.id.toString())
         toast.add({
-          title: 'Copied to clipboard',
-          description: 'Customer ID copied to clipboard'
+          title: t('common.copiedToClipboard'),
+          description: t('customers.customerIdCopied')
         })
       }
     },
@@ -46,24 +46,24 @@ function getRowItems(row: Row<User>) {
       type: 'separator'
     },
     {
-      label: 'View customer details',
+      label: t('customers.viewCustomerDetails'),
       icon: 'i-lucide-list'
     },
     {
-      label: 'View customer payments',
+      label: t('customers.viewCustomerPayments'),
       icon: 'i-lucide-wallet'
     },
     {
       type: 'separator'
     },
     {
-      label: 'Delete customer',
+      label: t('customers.deleteCustomer'),
       icon: 'i-lucide-trash',
       color: 'error',
       onSelect() {
         toast.add({
-          title: 'Customer deleted',
-          description: 'The customer has been deleted.'
+          title: t('customers.customerDeleted'),
+          description: t('customers.customerDeletedDescription')
         })
       }
     }
@@ -80,22 +80,22 @@ const columns: TableColumn<User>[] = [
           : table.getIsAllPageRowsSelected(),
         'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
           table.toggleAllPageRowsSelected(!!value),
-        'ariaLabel': 'Select all'
+        'ariaLabel': t('common.selectAll')
       }),
     cell: ({ row }) =>
       h(UCheckbox, {
         'modelValue': row.getIsSelected(),
         'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
-        'ariaLabel': 'Select row'
+        'ariaLabel': t('common.selectRow')
       })
   },
   {
     accessorKey: 'id',
-    header: 'ID'
+    header: t('customers.columns.id')
   },
   {
     accessorKey: 'name',
-    header: 'Name',
+    header: t('common.name'),
     cell: ({ row }) => {
       return h('div', { class: 'flex items-center gap-3' }, [
         h(UAvatar, {
@@ -117,7 +117,7 @@ const columns: TableColumn<User>[] = [
       return h(UButton, {
         color: 'neutral',
         variant: 'ghost',
-        label: 'Email',
+        label: t('common.email'),
         icon: isSorted
           ? isSorted === 'asc'
             ? 'i-lucide-arrow-up-narrow-wide'
@@ -130,12 +130,12 @@ const columns: TableColumn<User>[] = [
   },
   {
     accessorKey: 'location',
-    header: 'Location',
+    header: t('common.location'),
     cell: ({ row }) => row.original.location
   },
   {
     accessorKey: 'status',
-    header: 'Status',
+    header: t('common.status'),
     filterFn: 'equals',
     cell: ({ row }) => {
       const color = {
@@ -145,7 +145,7 @@ const columns: TableColumn<User>[] = [
       }[row.original.status]
 
       return h(UBadge, { class: 'capitalize', variant: 'subtle', color }, () =>
-        row.original.status
+        t(`customers.status.${row.original.status}`)
       )
     }
   },
@@ -209,7 +209,7 @@ const pagination = ref({
 <template>
   <UDashboardPanel id="customers">
     <template #header>
-      <UDashboardNavbar title="Customers">
+      <UDashboardNavbar :title="t('common.customers')">
         <template #leading>
           <UDashboardSidebarCollapse />
         </template>
@@ -226,14 +226,14 @@ const pagination = ref({
           v-model="email"
           class="max-w-sm"
           icon="i-lucide-search"
-          placeholder="Filter emails..."
+          :placeholder="t('customers.filterEmails')"
         />
 
         <div class="flex flex-wrap items-center gap-1.5">
           <CustomersDeleteModal :count="table?.tableApi?.getFilteredSelectedRowModel().rows.length">
             <UButton
               v-if="table?.tableApi?.getFilteredSelectedRowModel().rows.length"
-              label="Delete"
+              :label="t('common.delete')"
               color="error"
               variant="subtle"
               icon="i-lucide-trash"
@@ -249,13 +249,13 @@ const pagination = ref({
           <USelect
             v-model="statusFilter"
             :items="[
-              { label: 'All', value: 'all' },
-              { label: 'Subscribed', value: 'subscribed' },
-              { label: 'Unsubscribed', value: 'unsubscribed' },
-              { label: 'Bounced', value: 'bounced' }
+              { label: t('common.all'), value: 'all' },
+              { label: t('customers.status.subscribed'), value: 'subscribed' },
+              { label: t('customers.status.unsubscribed'), value: 'unsubscribed' },
+              { label: t('customers.status.bounced'), value: 'bounced' }
             ]"
             :ui="{ trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200' }"
-            placeholder="Filter status"
+            :placeholder="t('customers.filterStatus')"
             class="min-w-28"
           />
           <UDropdownMenu
@@ -264,7 +264,7 @@ const pagination = ref({
                 ?.getAllColumns()
                 .filter((column: any) => column.getCanHide())
                 .map((column: any) => ({
-                  label: upperFirst(column.id),
+                  label: t(`customers.columns.${column.id}`),
                   type: 'checkbox' as const,
                   checked: column.getIsVisible(),
                   onUpdateChecked(checked: boolean) {
@@ -278,7 +278,7 @@ const pagination = ref({
             :content="{ align: 'end' }"
           >
             <UButton
-              label="Display"
+              :label="t('customers.display')"
               color="neutral"
               variant="outline"
               trailing-icon="i-lucide-settings-2"
@@ -312,8 +312,10 @@ const pagination = ref({
 
       <div class="flex items-center justify-between gap-3 border-t border-default pt-4 mt-auto">
         <div class="text-sm text-muted">
-          {{ table?.tableApi?.getFilteredSelectedRowModel().rows.length || 0 }} of
-          {{ table?.tableApi?.getFilteredRowModel().rows.length || 0 }} row(s) selected.
+          {{ t('customers.rowsSelected', {
+            selected: table?.tableApi?.getFilteredSelectedRowModel().rows.length || 0,
+            total: table?.tableApi?.getFilteredRowModel().rows.length || 0
+          }) }}
         </div>
 
         <div class="flex items-center gap-1.5">

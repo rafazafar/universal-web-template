@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import { format, isToday } from 'date-fns'
+import { isToday } from 'date-fns'
 import type { Mail } from '~/types'
 
 const props = defineProps<{
   mails: Mail[]
 }>()
+const { locale } = useI18n()
+const timeFormatter = computed(() => new Intl.DateTimeFormat(locale.value === 'ja' ? 'ja-JP' : 'en-US', {
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false
+}))
+const dayFormatter = computed(() => new Intl.DateTimeFormat(locale.value === 'ja' ? 'ja-JP' : 'en-US', {
+  day: '2-digit',
+  month: 'short'
+}))
 
 const mailsRefs = ref<Record<number, Element | null>>({})
 
@@ -66,7 +76,7 @@ defineShortcuts({
             <UChip v-if="mail.unread" />
           </div>
 
-          <span>{{ isToday(new Date(mail.date)) ? format(new Date(mail.date), 'HH:mm') : format(new Date(mail.date), 'dd MMM') }}</span>
+          <span>{{ isToday(new Date(mail.date)) ? timeFormatter.format(new Date(mail.date)) : dayFormatter.format(new Date(mail.date)) }}</span>
         </div>
         <p class="truncate" :class="[mail.unread && 'font-semibold']">
           {{ mail.subject }}

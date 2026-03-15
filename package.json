@@ -6,8 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "eslint .",
+    "postinstall": "pnpx skills add antfu/skills -a codex -s nuxt -y && nuxt prepare",
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
@@ -32,8 +31,6 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.15.2",
-    "eslint": "^10.0.3",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.2.5"
   },

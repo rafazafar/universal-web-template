@@ -5,6 +5,8 @@ defineProps<{
   error: NuxtError
 }>()
 
+const { uiLocale } = useNuxtUiLocale()
+
 useSeoMeta({
   title: 'Page not found',
   description: 'We are sorry but this page could not be found.'
@@ -12,13 +14,14 @@ useSeoMeta({
 
 useHead({
   htmlAttrs: {
-    lang: 'en'
+    lang: computed(() => uiLocale.value.code),
+    dir: computed(() => uiLocale.value.dir)
   }
 })
 </script>
 
 <template>
-  <UApp>
+  <UApp :locale="uiLocale">
     <UError :error="error" />
   </UApp>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, format } from 'date-fns'
+import { eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval } from 'date-fns'
 import { VisXYContainer, VisLine, VisAxis, VisArea, VisCrosshair, VisTooltip } from '@unovis/vue'
 import type { Period, Range } from '~/types'
 
@@ -9,6 +9,7 @@ const props = defineProps<{
   period: Period
   range: Range
 }>()
+const { t, locale } = useI18n()
 
 type DataRecord = {
   date: Date
@@ -37,13 +38,21 @@ const y = (d: DataRecord) => d.amount
 
 const total = computed(() => data.value.reduce((acc: number, { amount }) => acc + amount, 0))
 
-const formatNumber = new Intl.NumberFormat('en', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format
+const formatNumber = computed(() => new Intl.NumberFormat(locale.value === 'ja' ? 'ja-JP' : 'en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format)
+const dayFormatter = computed(() => new Intl.DateTimeFormat(locale.value === 'ja' ? 'ja-JP' : 'en-US', {
+  day: 'numeric',
+  month: 'short'
+}))
+const monthFormatter = computed(() => new Intl.DateTimeFormat(locale.value === 'ja' ? 'ja-JP' : 'en-US', {
+  month: 'short',
+  year: 'numeric'
+}))
 
 const formatDate = (date: Date): string => {
   return ({
-    daily: format(date, 'd MMM'),
-    weekly: format(date, 'd MMM'),
-    monthly: format(date, 'MMM yyy')
+    daily: dayFormatter.value.format(date),
+    weekly: dayFormatter.value.format(date),
+    monthly: monthFormatter.value.format(date)
   })[props.period]
 }
 
@@ -55,7 +64,7 @@ const xTicks = (i: number) => {
   return formatDate(data.value[i].date)
 }
 
-const template = (d: DataRecord) => `${formatDate(d.date)}: ${formatNumber(d.amount)}`
+const template = (d: DataRecord) => `${formatDate(d.date)}: ${formatNumber.value(d.amount)}`
 </script>
 
 <template>
@@ -63,7 +72,7 @@ const template = (d: DataRecord) => `${formatDate(d.date)}: ${formatNumber(d.amo
     <template #header>
       <div>
         <p class="text-xs text-muted uppercase mb-1.5">
-          Revenue
+          {{ t('home.revenue') }}
         </p>
         <p class="text-3xl text-highlighted font-semibold">
           {{ formatNumber(total) }}
