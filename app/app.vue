@@ -5,10 +5,6 @@ const localeHead = useLocaleHead()
 
 const color = computed(() => colorMode.value === 'dark' ? '#1b1718' : 'white')
 
-definePageMeta({
-  title: 'app.title'
-})
-
 const title = $t('app.title') as string
 const description = $t('app.description') as string
 

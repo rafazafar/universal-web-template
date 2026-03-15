@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxt/ui",
     "@nuxtjs/i18n",
-    // "@nuxtjs/kinde",
+    "@nuxtjs/kinde",
     "@vueuse/nuxt",
     "nuxt-nodemailer",
   ],
@@ -16,40 +16,23 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/main.css"],
 
-  routeRules: {
-    "/api/**": {
-      cors: true,
+  runtimeConfig: {
+    // Private keys are only available on the server side.
+    somePrivateData:
+      "You can override this value in your .env file with the NUXT_SOME_PRIVATE_DATA",
+    public: {
+      // Public keys are exposed to both the server and client side.
+      someData:
+        "You can override this value in your .env file with the NUXT_PUBLIC_SOME_DATA",
     },
   },
 
-  runtimeConfig: {
-    somePrivateData: "This is private data that can only be accessed on the server side.",
-    public: {
-      someData: "This is public data that can be accessed on both the server and client side.",
-    }
+  // Authentication - https://docs.kinde.com/developer-tools/sdks/backend/nuxt-module/
+  kinde: {
+    debug: true,
   },
 
-
-  // Kinde Authentication - https://docs.kinde.com/developer-tools/sdks/backend/nuxt-module/
-  // kinde: {
-  //   debug: true,
-  //   // This is true by default and adds 'auth-logged-in' and 'auth-logged-out'
-  //   // middleware to your Nuxt application.
-  //   // 
-  //   middleware: false,
-  //   // 
-  //   // Set custom endpoints in case you use any of the default routes for other purposes
-  //   // endpoints: {
-  //   //   callback: '/api/callback',
-  //   //   login: '/api/login',
-  //   //   register: '/api/register',
-  //   //   health: '/api/health', (if debug is true)
-  //   //   logout: '/api/logout'
-  //   //   access: '/api/access'
-  //   //   portal: '/api/portal'
-  //   // }
-  // },
-
+  // SMTP EMAIL
   nodemailer: {
     from: '"Universal Web Template" <no-reply@example.com>',
     host: "smtp.example.com",
@@ -73,11 +56,32 @@ export default defineNuxtConfig({
     ],
   },
 
-  compatibilityDate: "2024-07-11",
+  compatibilityDate: "2026-03-15",
+
+  nitro: {
+    experimental: {
+      database: true,
+      openAPI: true,
+      tasks: true,
+    },
+
+    // DATABASE: https://v2.nitro.build/guide/database
+    database: {
+      default: {
+        connector: "sqlite",
+      }
+    },
+  },
 
   vite: {
     optimizeDeps: {
-      include: ["date-fns", "@internationalized/date", "@unovis/vue", "zod", '@tanstack/table-core'],
+      include: [
+        "date-fns",
+        "@internationalized/date",
+        "@unovis/vue",
+        "zod",
+        "@tanstack/table-core",
+      ],
     },
   },
 });
