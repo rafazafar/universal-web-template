@@ -14,7 +14,7 @@
     "@iconify-json/simple-icons": "^1.2.72",
     "@internationalized/date": "^3.12.0",
     "@nuxt/hints": "1.0.0",
-    "@nuxt/scripts": "0.13.2",
+    "@nuxt/scripts": "1.1.0",
     "@nuxt/ui": "^4.5.1",
     "@nuxtjs/i18n": "10.2.3",
     "@nuxtjs/kinde": "0.4.0",
